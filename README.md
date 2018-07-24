@@ -4,7 +4,7 @@ Solution for THE CELEBRITY PROBLEM for Globant
 ## Installation
 1. Just download or clone this source code (git clone https://github.com/davoplus/the-celebrity-problem.git ). 
 1. In your download folder (or local repository), type in your console **cd the-celebrity-problem**.
-1. Then you will need to build this code with the command **mvnw clean install -DskipTests**.
+1. Then you will need to build this code with the command **mvnw clean install**.
 1. After that, you must type **java -jar target/the-celebrity-problem-0.0.1-SNAPSHOT.jar**.
 1. Finally, you will see Spring Boot init screen.
 
