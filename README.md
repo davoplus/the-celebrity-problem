@@ -23,3 +23,24 @@ This command Find the Celebrity usin the relations list of each Person added. Th
 
 find-celebrity-by-relations
 This command Find the Celebrity usin the relations list recursively. This approach just return 1 celebrity.
+
+## Examples
+add-person a
+add-person b
+add-relation a b
+find-celebrity-by-relations a
+find-celebrity
+
+## Help
+If you need help about the names of the commands you can type:
+
+help
+
+If you need help about a concrete command you can type:
+
+help ** command_name **
+
+For example: help add-relation
+
+David Alejandro Caicedo De La Cruz
+david.caicedo@globant.com
