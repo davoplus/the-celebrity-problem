@@ -1,6 +1,7 @@
 package globantvividseats.thecelebrityproblem.model;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 import globantvividseats.thecelebrityproblem.RelationExistsException;
@@ -94,13 +95,45 @@ public class Person {
 	}
 	
 	
-	public Person findCelebrityByRelations() {
-		if(this.relationsList.size()==0)
+	public Person findCelebrityByRelations(HashSet<Person> verifiedPersonSet) {
+		if(!verifiedPersonSet.add(this))
+			return null;
+		if(this.relationsList.size()==0 && allKnowsMe(this))
 			return this;
-		for(Person personInList: this.relationsList) {
-			return personInList.findCelebrityByRelations();
+		Person celebrity=null;
+		for(Person personInList: this.relationsList) {			
+			celebrity = personInList.findCelebrityByRelations(verifiedPersonSet);
+			if(celebrity!=null) {
+				return celebrity;
+			}
 		}
 		return null;
+	}
+	
+	public void findCelebritiesByRelations(HashSet<Person> celebritiesSet,HashSet<Person> verifiedPersonSet) {
+		if(!verifiedPersonSet.add(this))
+			return;
+		
+		if(this.relationsList.size()==0 && allKnowsMe(this)) {
+			celebritiesSet.add(this);
+		}
+		for(Person personInList: this.relationsList) {
+			personInList.findCelebritiesByRelations(celebritiesSet,verifiedPersonSet);
+		}		
+		
+	}
+	
+	public boolean allKnowsMe(Person person) {
+		boolean everyoneKnowsMe = true;
+		for(Person personInList: this.getRelationsList()) {
+			if(personInList.getRelationsList().size()==0 || personInList.equals(person)) {
+				continue;
+			}
+			if(personInList.getRelation(person.getName()) == null){
+				everyoneKnowsMe = false;
+			}
+		}
+		return everyoneKnowsMe;
 	}
 	
 	

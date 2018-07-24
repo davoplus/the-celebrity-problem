@@ -29,3 +29,86 @@
 1532403479688:add-relation a b
 1532403484918:find-celebrity
 1532403509090:exit
+1532442693936:help
+1532442711922:add-person a
+1532442713756:add-person b
+1532442718963:add-relation a b
+1532442840747:find-celebrities-by-relations
+1532442847955:find-celebrities-by-relations a
+1532442867899:find-celebrities-by-relations b
+1532442875861:add-relation b a
+1532442879036:find-celebrities-by-relations b
+1532442884539:find-celebrities-by-relations a
+1532442933555:add-person c
+1532442942908:add-relation a c
+1532442953220:add-relation b c
+1532442984717:add-person d
+1532442995709:add-relation a d
+1532443006646:add-relation b d
+1532443017363:find-celebrities-by-relations
+1532443024998:find-celebrities-by-relations a
+1532443068261:find-celebrity
+1532443120271:find-celebrity-by-relations
+1532443122975:find-celebrity-by-relations a
+1532444512152:help
+1532444517304:add-person a
+1532444527448:add-person b
+1532444534608:add-relation a b
+1532444545128:add-relation b a
+1532444566511:find-celebrities-by-relations a
+1532444572522:find-celebrities-by-relations b
+1532444589663:find-celebrity
+1532444599287:find-celebrity-by-relations a
+1532445720449:help
+1532445725975:clear
+1532445727920:help
+1532445748945:add-person a
+1532445751762:add-person b
+1532445759290:add-relation a b
+1532445764951:add-relation b a
+1532445797097:find-celebrity-by-relations a
+1532445824418:find-celebrity
+1532445840066:clear
+1532445873001:add-person c
+1532445879259:add-person d
+1532445894876:add-relation a c
+1532445903546:add-relation b c
+1532445914010:add-relation a d
+1532445922220:add-relation b d
+1532445927764:help
+1532445941301:find-celebrities-by-relations a
+1532445951219:find-celebrities-by-relations b
+1532445965614:find-celebrity
+1532446005227:find-celebrity-by-relations a
+1532448595806:exit
+1532448629750:help
+1532448635157:add-person a
+1532448637311:add-person b
+1532448639592:add-person c
+1532448641789:add-person d
+1532448651590:add-relation a b
+1532448654917:add-relation b a
+1532448689022:add-relation a c
+1532448690477:add-relation a d
+1532448695568:add-relation b c
+1532448698701:add-relation b d
+1532448706166:find-celebrity
+1532448732198:find-celebrity-by-relations a
+1532448766238:find-celebrities-by-relations a
+1532448778288:find-celebrity
+1532448942752:exit
+1532448973971:add-person a
+1532448980073:add-person b
+1532448986242:add-person c
+1532448994112:add-person d
+1532449002282:add-relation a b
+1532449010146:add-relation b a
+1532449018392:add-relation a c
+1532449026186:add-relation a d
+1532449033834:add-relation b c
+1532449040434:add-relation b d
+1532449047972:find-celebrity
+1532449059769:find-celebrity-by-relations a
+1532449083771:find-celebrities-by-relations a
+1532449388388:exit
+1532449412733:help

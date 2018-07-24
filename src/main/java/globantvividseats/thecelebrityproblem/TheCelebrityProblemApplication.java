@@ -1,6 +1,7 @@
 package globantvividseats.thecelebrityproblem;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 import org.springframework.boot.SpringApplication;
@@ -56,19 +57,20 @@ public class TheCelebrityProblemApplication extends Person {
 			if(targetPerson==null)
 				throw new Exception(messagePersonNotExists);
 			sourcePerson.addRelation(targetPerson);
-			return TheCelebrityProblemApplication.messagePersonAdded;
+			return TheCelebrityProblemApplication.messageRelationAdded;
 		}catch(Exception ee) {
 			return ee.getMessage();
 		}
     }
 	
-	@ShellMethod("Find the Celebrity usin the relations list recursively. This approach just return 1 celebrity.")
+	@ShellMethod("Find the Celebrity usin the relations list recursively from source person. This approach just return one celebrity.")
     public String findCelebrityByRelations(	@ShellOption(help = "This parameter is the name of the Person from where I want start the search.")  String sourcePersonName) {
 		try {
 			Person sourcePerson = getRelation(sourcePersonName);
 			if(sourcePerson==null)
 				throw new Exception(messagePersonNotExists);
-			Person celebrity = sourcePerson.findCelebrityByRelations();
+			HashSet<Person> verifiedPersonSet= new HashSet<Person>();
+			Person celebrity = sourcePerson.findCelebrityByRelations(verifiedPersonSet);
 			if(celebrity==null)
 				throw new Exception(messageCelebrityNotFound);
 			else return String.format(messageCelebrityFound, celebrity.getName());	
@@ -77,17 +79,39 @@ public class TheCelebrityProblemApplication extends Person {
 		}
     }
 	
-	@ShellMethod("Find the Celebrity usin the relations list of each Person added. This approach can return one or many celebrities.")
-    public String findCelebrity() {
+	@ShellMethod("Find the Celebrity(ies) usin the relations list recursively from source person. This approach can return one o more celebrities.")
+    public String findCelebritiesByRelations(	@ShellOption(help = "This parameter is the name of the Person from where I want start the search.")  String sourcePersonName) {
 		try {
-			List<Person> celebritiesList = new ArrayList<Person>();
+			Person sourcePerson = getRelation(sourcePersonName);
+			if(sourcePerson==null)
+				throw new Exception(messagePersonNotExists);
+			HashSet<Person> celebritiesSet = new HashSet<Person>();
+			HashSet<Person> verifiedPersonSet= new HashSet<Person>();
+			sourcePerson.findCelebritiesByRelations(celebritiesSet,verifiedPersonSet);
+			if(celebritiesSet.size()==0)
+				throw new Exception(messageCelebrityNotFound);
+			String [] celebrityNamesArray = new String [celebritiesSet.size()]; 
+			int pos=0;
+			for(Person celebrity : celebritiesSet) {
+				celebrityNamesArray[pos] = celebrity.getName();
+				pos++;
+			}
+			return String.format(messageCelebrityFound, String.join(",", celebrityNamesArray));
+		}catch(Exception ee) {
+			return ee.getMessage();
+		}
+    }
+	
+	@ShellMethod("Find the Celebrity(ies) usin the relations list of each Person added. This approach can return one or more celebrities.")
+    public String findCelebrities() {
+		try {
 			List<String> celebritiesNamesList = new ArrayList<String>();
 			for(Person personInList: this.getRelationsList()) {
-				if(personInList.getRelationsList().size()==0) {
+				if(personInList.getRelationsList().size()==0 && allKnowsMe(personInList)) {
 					celebritiesNamesList.add(personInList.getName());
 				}
 			}
-			if(celebritiesList.size()>0) {
+			if(celebritiesNamesList.size()>0) {
 				String [] celebrityNamesArray = new String [celebritiesNamesList.size()];
 				celebrityNamesArray=celebritiesNamesList.toArray(celebrityNamesArray);
 				return String.format(messageCelebrityFound, String.join(",", celebrityNamesArray));
@@ -99,5 +123,7 @@ public class TheCelebrityProblemApplication extends Person {
 			return ee.getMessage();
 		}
     }
+	
+	
 	
 }
