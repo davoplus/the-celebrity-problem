@@ -63,7 +63,7 @@ public class TheCelebrityProblemApplication extends Person {
 		}
     }
 	
-	@ShellMethod("Find the Celebrity usin the relations list recursively from source person. This approach just return one celebrity.")
+	@ShellMethod("Find the Celebrity using the relations list recursively from source person. This approach just return one celebrity.")
     public String findCelebrityByRelations(	@ShellOption(help = "This parameter is the name of the Person from where I want start the search.")  String sourcePersonName) {
 		try {
 			Person sourcePerson = getRelation(sourcePersonName);
@@ -79,7 +79,7 @@ public class TheCelebrityProblemApplication extends Person {
 		}
     }
 	
-	@ShellMethod("Find the Celebrity(ies) usin the relations list recursively from source person. This approach can return one o more celebrities.")
+	@ShellMethod("Find the Celebrity(ies) using the relations list recursively from source person. This approach can return one o more celebrities.")
     public String findCelebritiesByRelations(	@ShellOption(help = "This parameter is the name of the Person from where I want start the search.")  String sourcePersonName) {
 		try {
 			Person sourcePerson = getRelation(sourcePersonName);
@@ -102,7 +102,7 @@ public class TheCelebrityProblemApplication extends Person {
 		}
     }
 	
-	@ShellMethod("Find the Celebrity(ies) usin the relations list of each Person added. This approach can return one or more celebrities.")
+	@ShellMethod("Find the Celebrity(ies) using the relations list of each Person added. This approach can return one or more celebrities.")
     public String findCelebrities() {
 		try {
 			List<String> celebritiesNamesList = new ArrayList<String>();

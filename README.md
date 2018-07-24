@@ -18,18 +18,42 @@ This command will Add a new Person.
 add-relation
 This command will Add a new Relation.
 
-find-celebrity
-This command Find the Celebrity usin the relations list of each Person added. This approach can return one or many celebrities.
+find-celebrities
+This command Find the Celebrity(ies) using the relations list of each Person added. This approach can return one or more celebrities.
+
+find-celebrities-by-relations
+This command Find the Celebrity(ies) using the relations list recursively from source person. This approach can return one o more celebrities.
 
 find-celebrity-by-relations
-This command Find the Celebrity usin the relations list recursively. This approach just return 1 celebrity.
+This command Find the Celebrity using the relations list recursively from source person. This approach just return one celebrity.
 
 ## Examples
-add-person a
-add-person b
-add-relation a b
-find-celebrity-by-relations a
-find-celebrity
+shell:>add-person a
+The Person was added
+shell:>add-person b
+The Person was added
+shell:>add-person c
+The Person was added
+shell:>add-person d
+The Person was added
+shell:>add-relation a b
+The Relation was added
+shell:>add-relation b a
+The Relation was added
+shell:>add-relation a c
+The Relation was added
+shell:>add-relation a d
+The Relation was added
+shell:>add-relation b c
+The Relation was added
+shell:>add-relation b d
+The Relation was added
+shell:>find-celebrities
+The Celebrity(ies) name(s) is(are) C,D
+shell:>find-celebrity-by-relations a
+The Celebrity(ies) name(s) is(are) C
+shell:>find-celebrities-by-relations a
+The Celebrity(ies) name(s) is(are) C,D
 
 ## Help
 If you need help about the names of the commands you can type:
