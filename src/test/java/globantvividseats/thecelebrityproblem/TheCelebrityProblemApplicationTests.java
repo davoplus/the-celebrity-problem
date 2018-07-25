@@ -12,6 +12,11 @@ import org.springframework.shell.Shell;
 import org.junit.FixMethodOrder;
 import org.junit.runners.MethodSorters;
 
+/**
+ * This class contains the unit test for the celebrity problem
+ * @author david.caicedo
+ *
+ */
 @RunWith(SpringRunner.class)
 @SpringBootTest(properties = {
 	    ScriptShellApplicationRunner.SPRING_SHELL_SCRIPT_ENABLED + "=false",
@@ -24,14 +29,18 @@ public class TheCelebrityProblemApplicationTests {
     private Shell shell;
 	
 	
+	/**
+	 * The constructor of TheCelebrityProblemApplicationTests class
+	 */
 	public TheCelebrityProblemApplicationTests() {
 		super();		
 	}
 
-	@Test
-	public void contextLoads() {
-	}
 	
+	/**
+	 * this method test the addPerson functionality.
+	 * @throws Exception
+	 */
 	@Test
 	public void testAddPerson()throws Exception{
 		
@@ -39,9 +48,15 @@ public class TheCelebrityProblemApplicationTests {
 		assertThat(shell.evaluate(() -> "add-person b")).isEqualTo(TheCelebrityProblemApplication.messagePersonAdded);
 		assertThat(shell.evaluate(() -> "add-person c")).isEqualTo(TheCelebrityProblemApplication.messagePersonAdded);
 		assertThat(shell.evaluate(() -> "add-person d")).isEqualTo(TheCelebrityProblemApplication.messagePersonAdded);
+		assertThat(shell.evaluate(() -> "add-person d")).isEqualTo(TheCelebrityProblemApplication.messagePersonAlreadyExists);
+		assertThat(shell.evaluate(() -> "add-person f")).isEqualTo(TheCelebrityProblemApplication.messagePersonAdded);
 		
 	}
 	
+	/**
+	 * This method test the addRelations functionality.
+	 * @throws Exception
+	 */
 	@Test
 	public void testAddRelations()throws Exception{
 		
@@ -52,17 +67,23 @@ public class TheCelebrityProblemApplicationTests {
 		assertThat(shell.evaluate(() -> "add-relation b c")).isEqualTo(TheCelebrityProblemApplication.messageRelationAdded);
 		assertThat(shell.evaluate(() -> "add-relation b d")).isEqualTo(TheCelebrityProblemApplication.messageRelationAdded);	
 		assertThat(shell.evaluate(() -> "add-relation b d")).isEqualTo(RelationExistsException.message);
-		
+		assertThat(shell.evaluate(() -> "add-relation e a")).isEqualTo(TheCelebrityProblemApplication.messagePersonNotExists);
+		assertThat(shell.evaluate(() -> "add-relation a e")).isEqualTo(TheCelebrityProblemApplication.messagePersonNotExists);
 		
 	}
 	
 	
+	/**
+	 * This method test the findCelebrityByRelations functionality.
+	 * @throws Exception
+	 */
 	@Test
 	public void testFindCelebrityByRelations()throws Exception{
 	
 		String celebrityC = "C";
-		assertThat(shell.evaluate(() -> "find-celebrity-by-relations a")).isEqualTo(String.format(TheCelebrityProblemApplication.messageCelebrityFound, celebrityC));			
-		
+		assertThat(shell.evaluate(() -> "find-celebrity-by-relations a")).isEqualTo(String.format(TheCelebrityProblemApplication.messageCelebrityFound, celebrityC));	
+		assertThat(shell.evaluate(() -> "find-celebrity-by-relations e")).isEqualTo(TheCelebrityProblemApplication.messagePersonNotExists);
+		assertThat(shell.evaluate(() -> "find-celebrity-by-relations f")).isEqualTo(TheCelebrityProblemApplication.messageCelebrityNotFound);
 	}
 
 

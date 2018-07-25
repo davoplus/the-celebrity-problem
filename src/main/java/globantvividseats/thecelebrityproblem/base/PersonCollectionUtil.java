@@ -6,8 +6,19 @@ import java.util.List;
 import globantvividseats.thecelebrityproblem.RelationExistsException;
 import globantvividseats.thecelebrityproblem.model.Person;
 
+/**
+ * Utilitary class that wrap the core logic for Person collections
+ * @author david.caicedo
+ *
+ */
 public abstract class PersonCollectionUtil {
 	
+	/**
+	 * This method add a new relation in source person
+	 * @param sourcePerson the person to add the relation
+	 * @param targetPerson the person who source knows
+	 * @throws RelationExistsException
+	 */
 	public void addRelation(Person sourcePerson,Person targetPerson) throws RelationExistsException{
 		if(!existsRelation(sourcePerson,targetPerson)) {
 			sourcePerson.getRelationsList().add(targetPerson);
@@ -16,6 +27,12 @@ public abstract class PersonCollectionUtil {
 		}		
 	}
 	
+	/**
+	 * This method verify if exists a relation in source person that contains target person
+	 * @param sourcePerson the owner of the relation
+	 * @param targetPerson the person who source knows
+	 * @return true if the relation exists
+	 */
 	private boolean existsRelation(Person sourcePerson,Person targetPerson) {
 		boolean exists=false;
 		for(Person personInList : sourcePerson.getRelationsList()) {
@@ -27,6 +44,12 @@ public abstract class PersonCollectionUtil {
 		return exists;
 	}
 	
+	/**
+	 * This method return a object Person if the relation exists
+	 * @param relationsList the list of relations of one Person
+	 * @param personName the name of the person to validate
+	 * @return
+	 */
 	public Person getRelation(List<Person> relationsList,String personName) {
 		Person person = new Person(personName.toUpperCase());
 		for(Person personInList : relationsList) {
@@ -37,6 +60,13 @@ public abstract class PersonCollectionUtil {
 		return null;
 	}
 	
+	/**
+	 * this is a recursive method that find and validate if a relation of source person is a celebrity
+	 * @param sourcePerson the person to be validated
+	 * @param verifiedPersonSet control list for avoid the infinite loop
+	 * @param allPersonList the list with all person
+	 * @return the person that is a celebrity
+	 */
 	public Person findCelebrityByRelations(Person sourcePerson,HashSet<Person> verifiedPersonSet, List<Person> allPersonList) {
 		if(!verifiedPersonSet.add(sourcePerson))
 			return null;
@@ -52,19 +82,13 @@ public abstract class PersonCollectionUtil {
 		return null;
 	}
 	
-	public void findCelebritiesByRelations(Person sourcePerson,HashSet<Person> celebritiesSet,HashSet<Person> verifiedPersonSet, List<Person> allPersonList) {
-		if(!verifiedPersonSet.add(sourcePerson))
-			return;
 		
-		if(sourcePerson.getRelationsList().size()==0 && allKnowsMe(sourcePerson,allPersonList)) {
-			celebritiesSet.add(sourcePerson);
-		}
-		for(Person personInList: sourcePerson.getRelationsList()) {
-			findCelebritiesByRelations(personInList,celebritiesSet,verifiedPersonSet,allPersonList);
-		}		
-		
-	}
-	
+	/**
+	 * This method validate if the person is known for all others person
+	 * @param person this is the person to be validate
+	 * @param allPersonList the list with all person
+	 * @return
+	 */
 	public boolean allKnowsMe(Person person,List<Person> allPersonList) {
 		boolean everyoneKnowsMe = true;
 		for(Person personInList: allPersonList) {
