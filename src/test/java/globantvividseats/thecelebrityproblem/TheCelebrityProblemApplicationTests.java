@@ -56,13 +56,6 @@ public class TheCelebrityProblemApplicationTests {
 		
 	}
 	
-	@Test
-	public void testFindCelebrities()throws Exception{
-		
-		String [] celebritiesCandD = {"C","D"};		
-		assertThat(shell.evaluate(() -> "find-celebrities")).isEqualTo(String.format(TheCelebrityProblemApplication.messageCelebrityFound, String.join(",", celebritiesCandD)));			
-		
-	}
 	
 	@Test
 	public void testFindCelebrityByRelations()throws Exception{
@@ -71,13 +64,6 @@ public class TheCelebrityProblemApplicationTests {
 		assertThat(shell.evaluate(() -> "find-celebrity-by-relations a")).isEqualTo(String.format(TheCelebrityProblemApplication.messageCelebrityFound, celebrityC));			
 		
 	}
-	
-	@Test
-	public void testFindCelebritiesByRelations()throws Exception{
-		
-		String [] celebritiesCandD = {"C","D"};		
-		assertThat(shell.evaluate(() -> "find-celebrities-by-relations a")).isEqualTo(String.format(TheCelebrityProblemApplication.messageCelebrityFound, String.join(",", celebritiesCandD)));			
-		
-	}
+
 
 }

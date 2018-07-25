@@ -18,12 +18,6 @@ Here you can type:
 **add-relation**
 * This command will Add a new Relation.
 
-**find-celebrities**
-* This command Find the Celebrity(ies) using the relations list of each Person added. This approach can return one or more celebrities.
-
-**find-celebrities-by-relations**
-* This command Find the Celebrity(ies) using the relations list recursively from source person. This approach can return one o more celebrities.
-
 **find-celebrity-by-relations**
 * This command Find the Celebrity using the relations list recursively from source person. This approach just return one celebrity.
 
@@ -48,12 +42,8 @@ Here you can type:
 * The Relation was added
 * shell:>add-relation b d
 * The Relation was added
-* shell:>find-celebrities
-* The Celebrity(ies) name(s) is(are) C,D
 * shell:>find-celebrity-by-relations a
-* The Celebrity(ies) name(s) is(are) C
-* shell:>find-celebrities-by-relations a
-* The Celebrity(ies) name(s) is(are) C,D
+* The Celebrity name is C
 
 ## Help
 If you need help about the names of the commands you can type:
