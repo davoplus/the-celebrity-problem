@@ -47,8 +47,7 @@ public class TheCelebrityProblemApplicationTests {
 		assertThat(shell.evaluate(() -> "add-person a")).isEqualTo(TheCelebrityProblemApplication.messagePersonAdded);
 		assertThat(shell.evaluate(() -> "add-person b")).isEqualTo(TheCelebrityProblemApplication.messagePersonAdded);
 		assertThat(shell.evaluate(() -> "add-person c")).isEqualTo(TheCelebrityProblemApplication.messagePersonAdded);
-		assertThat(shell.evaluate(() -> "add-person d")).isEqualTo(TheCelebrityProblemApplication.messagePersonAdded);
-		assertThat(shell.evaluate(() -> "add-person d")).isEqualTo(TheCelebrityProblemApplication.messagePersonAlreadyExists);
+		assertThat(shell.evaluate(() -> "add-person c")).isEqualTo(TheCelebrityProblemApplication.messagePersonAlreadyExists);
 		assertThat(shell.evaluate(() -> "add-person f")).isEqualTo(TheCelebrityProblemApplication.messagePersonAdded);
 		
 	}
@@ -62,13 +61,12 @@ public class TheCelebrityProblemApplicationTests {
 		
 		assertThat(shell.evaluate(() -> "add-relation a b")).isEqualTo(TheCelebrityProblemApplication.messageRelationAdded);
 		assertThat(shell.evaluate(() -> "add-relation b a")).isEqualTo(TheCelebrityProblemApplication.messageRelationAdded);
-		assertThat(shell.evaluate(() -> "add-relation a c")).isEqualTo(TheCelebrityProblemApplication.messageRelationAdded);
-		assertThat(shell.evaluate(() -> "add-relation a d")).isEqualTo(TheCelebrityProblemApplication.messageRelationAdded);
-		assertThat(shell.evaluate(() -> "add-relation b c")).isEqualTo(TheCelebrityProblemApplication.messageRelationAdded);
-		assertThat(shell.evaluate(() -> "add-relation b d")).isEqualTo(TheCelebrityProblemApplication.messageRelationAdded);	
-		assertThat(shell.evaluate(() -> "add-relation b d")).isEqualTo(RelationExistsException.message);
+		assertThat(shell.evaluate(() -> "add-relation a c")).isEqualTo(TheCelebrityProblemApplication.messageRelationAdded);		
+		assertThat(shell.evaluate(() -> "add-relation b c")).isEqualTo(TheCelebrityProblemApplication.messageRelationAdded);			
+		assertThat(shell.evaluate(() -> "add-relation b c")).isEqualTo(RelationExistsException.message);
 		assertThat(shell.evaluate(() -> "add-relation e a")).isEqualTo(TheCelebrityProblemApplication.messagePersonNotExists);
 		assertThat(shell.evaluate(() -> "add-relation a e")).isEqualTo(TheCelebrityProblemApplication.messagePersonNotExists);
+		assertThat(shell.evaluate(() -> "add-relation f c")).isEqualTo(TheCelebrityProblemApplication.messageRelationAdded);
 		
 	}
 	
@@ -83,7 +81,7 @@ public class TheCelebrityProblemApplicationTests {
 		String celebrityC = "C";
 		assertThat(shell.evaluate(() -> "find-celebrity-by-relations a")).isEqualTo(String.format(TheCelebrityProblemApplication.messageCelebrityFound, celebrityC));	
 		assertThat(shell.evaluate(() -> "find-celebrity-by-relations e")).isEqualTo(TheCelebrityProblemApplication.messagePersonNotExists);
-		assertThat(shell.evaluate(() -> "find-celebrity-by-relations f")).isEqualTo(TheCelebrityProblemApplication.messageCelebrityNotFound);
+		assertThat(shell.evaluate(() -> "find-celebrity-by-relations c")).isEqualTo(String.format(TheCelebrityProblemApplication.messageCelebrityFound, celebrityC));
 	}
 
 
