@@ -92,7 +92,7 @@ public abstract class PersonCollectionUtil {
 	public boolean allKnowsMe(Person person,List<Person> allPersonList) {
 		boolean everyoneKnowsMe = true;
 		for(Person personInList: allPersonList) {
-			if(personInList.getRelationsList().size()==0 || personInList.equals(person)) {
+			if(personInList.equals(person)) {
 				continue;
 			}
 			if(getRelation(personInList.getRelationsList(),person.getName()) == null){
