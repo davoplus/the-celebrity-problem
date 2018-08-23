@@ -58,3 +58,6 @@ For example: help add-relation
 
 * David Alejandro Caicedo De La Cruz
 * david.caicedo@globant.com
+
+## Continuous Integration 
+* by app.codeship.com
