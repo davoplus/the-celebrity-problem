@@ -27,6 +27,7 @@ public class TheCelebrityProblemApplication extends PersonCollectionUtil{
 	public static final String messagePersonAdded="The Person was added";
 	public static final String messageRelationAdded="The Relation was added";
 	public static final String messagePersonNotExists="The Person Not Exists";
+	public static final String messageSelfRelation="A Person can't add a relation with himself";
 	public static final String messagePersonAlreadyExists="The Person already Exists";
 	public static final String messageCelebrityFound="The Celebrity name is %s";
 	public static final String messageCelebrityNotFound="The Celebrity is not here";
@@ -84,6 +85,8 @@ public class TheCelebrityProblemApplication extends PersonCollectionUtil{
 			Person targetPerson = getRelation(this.allPersonList,targetPersonName);
 			if(targetPerson==null)
 				throw new Exception(messagePersonNotExists);
+			if(sourcePerson.equals(targetPerson))
+				throw new Exception(messageSelfRelation);
 			addRelation(sourcePerson,targetPerson);
 			return TheCelebrityProblemApplication.messageRelationAdded;
 		}catch(Exception ee) {
